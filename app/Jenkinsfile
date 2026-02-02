@@ -28,8 +28,13 @@ pipeline{
         }
         stage("Deploy"){
             steps{
-                sh "export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -i ansible/inventory.ini ansible/deploy.yml"
+                sshagent(['my-app-key']) {
+            sh """
+                export ANSIBLE_HOST_KEY_CHECKING=False
+                ansible-playbook -i ansible/inventory.ini ansible/deploy.yml
+            """
             }
         }
     }
+}
 }

@@ -26,14 +26,16 @@ pipeline{
                 }
             }
         }
-        stage("Deploy"){
-            steps{
-                sshagent(['my-app-key']) {
+        stage("Deploy") {
+    steps {
+        // 'my-app-key' is the ID of your credential in Jenkins
+        withCredentials([sshUserPrivateKey(credentialsId: 'my-app-key', keyFileVariable: 'SSH_KEY')]) {
             sh """
                 export ANSIBLE_HOST_KEY_CHECKING=False
-                ansible-playbook -i ansible/inventory.ini ansible/deploy.yml
+                ansible-playbook -i ansible/inventory.ini ansible/deploy.yml \
+                --private-key=\$SSH_KEY \
+                --user ec2-user
             """
-            }
         }
     }
 }

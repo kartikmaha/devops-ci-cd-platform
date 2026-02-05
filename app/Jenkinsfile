@@ -30,7 +30,7 @@ pipeline{
             steps {
                     withCredentials([sshUserPrivateKey(credentialsId: 'my-app-key', 
                                                        keyFileVariable: 'SSH_KEY',
-                                                       usernameVariable: 'SSH_USER')]) {
+                                                    usernameVariable: 'SSH_USER')]) {
                     sh """
                         export ANSIBLE_HOST_KEY_CHECKING=False
                         ansible-playbook -i ansible/inventory.ini ansible/deploy.yml \

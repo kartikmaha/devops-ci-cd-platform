@@ -6,6 +6,7 @@
         name: devops_app
         image: kartikmaha/devops-app:latest
         state: started
+        pull: true
         restart_policy: always
         ports:
           - "5000:5000"

@@ -1,52 +1,36 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, jsonify, render_template
 import os
 from datetime import datetime
 
 app = Flask(__name__)
 
-def deployment_metadata():
-    return {
-        "status": "UP",
-        "environment": os.getenv("ENVIRONMENT", "dev"),
-        "version": os.getenv("APP_VERSION", "1.0.0"),
-        "build_number": os.getenv("BUILD_NUMBER", "local"),
-        "git_commit": os.getenv("GIT_COMMIT", "unknown"),
-        "deployed_at": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    }
-
-def project_info():
-    return {
-        "project_name": "DevOps CI/CD Mini Project",
-        "description": "End-to-end CI/CD pipeline to build, containerize, and deploy a Flask web application.",
-        "tools": [
-            "GitHub",
-            "Jenkins",
-            "Docker",
-            "Docker Hub",
-            "Ansible",
-            "AWS EC2",
-            "Linux"
-        ],
-        "pipeline_flow": [
-            "Code pushed to GitHub",
-            "Jenkins pipeline triggered",
-            "Docker image built",
-            "Image pushed to Docker Hub",
-            "Ansible deploys container on EC2"
-        ]
-    }
-
 @app.route("/")
 def home():
     return render_template("index.html")
 
-@app.route("/api/deploy")
-def deploy():
-    return jsonify(deployment_metadata())
+@app.route("/api/info")
+def info():
+    return jsonify({
+        "application": "CI/CD Pipeline Showcase Dashboard",
+        "status": "UP",
+        "environment": os.getenv("ENVIRONMENT", "dev"),
+        "version": os.getenv("APP_VERSION", "1.0.0"),
+        "build_number": os.getenv("BUILD_NUMBER", "manual"),
+        "git_commit": os.getenv("GIT_COMMIT", "local"),
+        "deployed_at": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    })
 
-@app.route("/api/project")
-def project():
-    return jsonify(project_info())
+@app.route("/api/tools")
+def tools():
+    return jsonify({
+        "tools": [
+            {"name": "GitHub", "purpose": "Source Code Management"},
+            {"name": "Jenkins", "purpose": "CI/CD Automation"},
+            {"name": "Docker", "purpose": "Containerization"},
+            {"name": "Ansible", "purpose": "Configuration Management & Deployment"},
+            {"name": "AWS EC2", "purpose": "Application Hosting"}
+        ]
+    })
 
 @app.route("/health")
 def health():

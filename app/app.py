@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import os
 from datetime import datetime
 
@@ -7,7 +7,6 @@ app = Flask(__name__)
 def app_metadata():
     return {
         "status": "UP",
-        "service": "devops-ci-cd-platform",
         "environment": os.getenv("ENVIRONMENT", "dev"),
         "version": os.getenv("APP_VERSION", "1.0.0"),
         "git_commit": os.getenv("GIT_COMMIT", "unknown"),
@@ -17,7 +16,7 @@ def app_metadata():
 
 @app.route("/")
 def home():
-    return jsonify(app_metadata())
+    return render_template("index.html", data=app_metadata())
 
 @app.route("/info")
 def info():

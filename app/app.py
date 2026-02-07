@@ -4,16 +4,24 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-@app.route("/info")
-def info():
-    return jsonify({
+def app_metadata():
+    return {
         "status": "UP",
+        "service": "devops-ci-cd-platform",
         "environment": os.getenv("ENVIRONMENT", "dev"),
         "version": os.getenv("APP_VERSION", "1.0.0"),
         "git_commit": os.getenv("GIT_COMMIT", "unknown"),
         "build_number": os.getenv("BUILD_NUMBER", "unknown"),
         "deployed_at": os.getenv("DEPLOY_TIME", datetime.utcnow().isoformat())
-    })
+    }
+
+@app.route("/")
+def home():
+    return jsonify(app_metadata())
+
+@app.route("/info")
+def info():
+    return jsonify(app_metadata())
 
 @app.route("/health")
 def health():

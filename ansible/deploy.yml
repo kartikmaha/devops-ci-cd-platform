@@ -5,7 +5,7 @@
       docker_container:
         name: devops_app
         image: kartikmaha/devops-app:latest
-        state: started
+        state: absent
         pull: true
         restart_policy: always
         ports:

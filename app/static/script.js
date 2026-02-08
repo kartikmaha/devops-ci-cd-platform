@@ -1,21 +1,23 @@
-function openDashboard() {
-  document.getElementById("dashboard").style.display = "block";
-  loadInfo();
+function showStage(message) {
+  alert(message);
 }
 
-function closeDashboard() {
-  document.getElementById("dashboard").style.display = "none";
+function openPanel() {
+  document.getElementById("panel").classList.add("open");
+  loadData();
 }
 
-async function loadInfo() {
+function closePanel() {
+  document.getElementById("panel").classList.remove("open");
+}
+
+async function loadData() {
   const info = await fetch("/info").then(r => r.json());
   const health = await fetch("/health").then(r => r.json());
 
+  document.getElementById("status").innerText = health.status;
   document.getElementById("environment").innerText = info.environment;
   document.getElementById("version").innerText = info.version;
   document.getElementById("build").innerText = info.build_number;
-
-  const statusEl = document.getElementById("status");
-  statusEl.innerText = health.status;
-  statusEl.className = "badge up";
+  document.getElementById("commit").innerText = info.git_commit;
 }

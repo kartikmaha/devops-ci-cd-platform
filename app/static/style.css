@@ -5,51 +5,72 @@
 
 body {
   margin: 0;
-  background: #0f172a;
+  background: #0b1120;
   color: #e5e7eb;
 }
 
-header {
+.top {
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px;
   background: linear-gradient(135deg, #020617, #020617);
 }
 
-header h1 {
-  margin-bottom: 10px;
-}
-
-.hero {
+.intro {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 40px;
 }
 
-.hero-card {
+.intro-card {
   background: #020617;
   padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  transition: transform 0.3s;
+  border-radius: 14px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.hero-card:hover {
-  transform: translateY(-6px);
+.intro-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 25px rgba(59,130,246,0.3);
 }
 
-.cta {
+.pipeline {
+  text-align: center;
+  padding: 30px;
+}
+
+.stages {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.stage {
+  padding: 14px 22px;
+  border-radius: 30px;
+  background: #1e293b;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.stage:hover {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+
+.actions {
   text-align: center;
   padding: 20px;
 }
 
 button {
-  background: #2563eb;
-  border: none;
-  padding: 14px 28px;
-  font-size: 16px;
-  color: white;
+  padding: 14px 30px;
   border-radius: 30px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -57,63 +78,35 @@ button:hover {
   background: #1d4ed8;
 }
 
-.modal {
-  display: none;
+/* Sliding panel */
+.side-panel {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background: #020617;
+  padding: 25px;
+  transition: right 0.4s ease;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
 }
 
-.modal-content {
-  background: #020617;
-  max-width: 900px;
-  margin: 80px auto;
-  padding: 30px;
-  border-radius: 14px;
+.side-panel.open {
+  right: 0;
 }
 
 .close {
-  float: right;
   font-size: 28px;
   cursor: pointer;
+  float: right;
 }
 
-.status-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.status-card {
-  background: #020617;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.badge {
-  padding: 6px 12px;
-  border-radius: 14px;
-}
-
-.badge.up {
-  background: #16a34a;
-}
-
-.pipeline {
-  margin: 15px 0;
-  font-weight: bold;
-}
-
-.tools li {
-  margin-bottom: 6px;
+.info-grid div {
+  margin: 10px 0;
 }
 
 footer {
   text-align: center;
   padding: 20px;
-  background: #020617;
   color: #9ca3af;
 }
-

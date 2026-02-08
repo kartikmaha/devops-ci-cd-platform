@@ -1,84 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>CI/CD Deployment Dashboard</title>
-  <link rel="stylesheet" href="/static/style.css" />
+  <meta charset="UTF-8">
+  <title>CI/CD Pipeline Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
   <script defer src="/static/script.js"></script>
 </head>
 <body>
 
-<header id="env-banner">
-  <h1>CI/CD Deployment Dashboard</h1>
-  <span id="environment">ENV</span>
+<header>
+  <h1>CI/CD Pipeline Showcase</h1>
+  <p>Modern DevOps • Automated • Observable</p>
 </header>
 
-<main class="container">
+<section class="hero">
+  <div class="hero-card">
+    <h2>End-to-End Automation</h2>
+    <p>From code commit to production deployment using CI/CD best practices.</p>
+  </div>
+  <div class="hero-card">
+    <h2>Cloud Native</h2>
+    <p>Containerized application deployed on AWS using Docker & Ansible.</p>
+  </div>
+  <div class="hero-card">
+    <h2>Production Visibility</h2>
+    <p>Real-time deployment metadata and health checks.</p>
+  </div>
+</section>
 
-  <!-- Status Cards -->
-  <section class="cards">
-    <div class="card">
-      <h3>Status</h3>
-      <span id="status" class="badge">Loading...</span>
-    </div>
-    <div class="card">
-      <h3>Version</h3>
-      <p id="version">-</p>
-    </div>
-    <div class="card">
-      <h3>Build</h3>
-      <p id="build">-</p>
-    </div>
-    <div class="card">
-      <h3>Last Deployed</h3>
-      <p id="deployedAt">-</p>
-    </div>
-  </section>
+<section class="cta">
+  <button onclick="openDashboard()">View Deployment Status</button>
+</section>
 
-  <!-- Pipeline -->
-  <section class="pipeline">
-    <h2>Pipeline Flow</h2>
-    <div class="pipeline-steps">
-      <span class="step active">Code</span>
-      <span class="step active">Build</span>
-      <span class="step active">Docker</span>
-      <span class="step active">Deploy</span>
-    </div>
-  </section>
+<!-- Dashboard Modal -->
+<div id="dashboard" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeDashboard()">×</span>
 
-  <!-- Expandable Details -->
-  <section class="accordion">
-    <button class="accordion-btn">Deployment Details</button>
-    <div class="accordion-content">
-      <p><strong>Git Commit:</strong> <span id="commit">-</span></p>
-      <p><strong>Auto Refresh:</strong> Every 30 seconds</p>
+    <h2>Deployment Status</h2>
+
+    <div class="status-grid">
+      <div class="status-card">
+        <h4>Status</h4>
+        <span id="status" class="badge">Loading</span>
+      </div>
+      <div class="status-card">
+        <h4>Environment</h4>
+        <p id="environment">-</p>
+      </div>
+      <div class="status-card">
+        <h4>Version</h4>
+        <p id="version">-</p>
+      </div>
+      <div class="status-card">
+        <h4>Build</h4>
+        <p id="build">-</p>
+      </div>
     </div>
 
-    <button class="accordion-btn">Tools Used</button>
-    <div class="accordion-content">
-      <ul>
-        <li>GitHub – Source Control</li>
-        <li>Jenkins – CI/CD</li>
-        <li>Docker – Containerization</li>
-        <li>Ansible – Deployment</li>
-        <li>AWS EC2 – Infrastructure</li>
-      </ul>
+    <h3>Pipeline Flow</h3>
+    <div class="pipeline">
+      <span>Code</span> → <span>Build</span> → <span>Docker</span> → <span>Deploy</span>
     </div>
-  </section>
 
-  <!-- Links -->
-  <section class="links">
-    <h2>Quick Links</h2>
-    <a href="https://github.com/kartikmaha/devops-ci-cd-platform" target="_blank">GitHub Repo</a>
-    <a href="#" target="_blank">Jenkins Job</a>
-    <a href="https://hub.docker.com/r/kartikmaha/devops-app" target="_blank">DockerHub</a>
-  </section>
-
-</main>
+    <h3>Tools Used</h3>
+    <ul class="tools">
+      <li>GitHub – Source Control</li>
+      <li>Jenkins – CI/CD Automation</li>
+      <li>Docker – Containerization</li>
+      <li>Ansible – Configuration Management</li>
+      <li>AWS EC2 – Cloud Infrastructure</li>
+    </ul>
+  </div>
+</div>
 
 <footer>
-  <p>Internal DevOps Tool • Built for CI/CD Visibility</p>
+  <p>Internal DevOps Dashboard • Built for CI/CD Visibility</p>
 </footer>
 
 </body>
 </html>
+

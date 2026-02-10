@@ -1,27 +1,32 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify
+from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
+import datetime
 import os
-from datetime import datetime
 
 app = Flask(__name__)
 
+REQUEST_COUNT = Counter(
+    "app_requests_total",
+    "Total HTTP requests received"
+)
+
 @app.route("/")
 def home():
-    return render_template("index.html")
+    REQUEST_COUNT.inc()
+    return "Application is running"
 
 @app.route("/info")
 def info():
+    REQUEST_COUNT.inc()
     return jsonify({
-        "status": "UP",
-        "environment": os.getenv("ENVIRONMENT", "dev"),
-        "version": os.getenv("APP_VERSION", "1.0.0"),
-        "build_number": os.getenv("BUILD_NUMBER", "local"),
-        "git_commit": os.getenv("GIT_COMMIT", "unknown"),
-        "deployed_at": datetime.utcnow().isoformat()
+        "environment": os.getenv("ENV", "production"),
+        "build": os.getenv("BUILD_NUMBER", "manual-build"),
+        "time": datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     })
-    
-@app.route("/health")
-def health():
-    return jsonify({"status": "UP"}), 200
+
+@app.route("/metrics")
+def metrics():
+    return generate_latest(), 200, {"Content-Type": CONTENT_TYPE_LATEST}
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)

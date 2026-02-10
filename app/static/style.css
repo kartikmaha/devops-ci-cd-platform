@@ -1,112 +1,39 @@
-* {
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-
 body {
   margin: 0;
-  background: #0b1120;
-  color: #e5e7eb;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f6f8;
+  color: #333;
 }
 
-.top {
-  text-align: center;
-  padding: 40px;
-  background: linear-gradient(135deg, #020617, #020617);
-}
-
-.intro {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 40px;
-}
-
-.intro-card {
-  background: #020617;
-  padding: 25px;
-  border-radius: 14px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.intro-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(59,130,246,0.3);
-}
-
-.pipeline {
-  text-align: center;
-  padding: 30px;
-}
-
-.stages {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.stage {
-  padding: 14px 22px;
-  border-radius: 30px;
-  background: #1e293b;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.stage:hover {
-  background: #2563eb;
-  transform: scale(1.05);
-}
-
-.actions {
-  text-align: center;
-  padding: 20px;
-}
-
-button {
-  padding: 14px 30px;
-  border-radius: 30px;
-  border: none;
-  background: #2563eb;
+header {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
   color: white;
-  font-size: 16px;
-  cursor: pointer;
+  padding: 30px;
+  text-align: center;
 }
 
-button:hover {
-  background: #1d4ed8;
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px;
 }
 
-/* Sliding panel */
-.side-panel {
-  position: fixed;
-  top: 0;
-  right: -400px;
-  width: 400px;
-  height: 100%;
-  background: #020617;
+.card {
+  background: white;
   padding: 25px;
-  transition: right 0.4s ease;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-.side-panel.open {
-  right: 0;
-}
-
-.close {
-  font-size: 28px;
-  cursor: pointer;
-  float: right;
-}
-
-.info-grid div {
-  margin: 10px 0;
+.card h2 {
+  margin-top: 0;
+  color: #2a5298;
 }
 
 footer {
   text-align: center;
   padding: 20px;
-  color: #9ca3af;
+  background: #222;
+  color: #aaa;
 }

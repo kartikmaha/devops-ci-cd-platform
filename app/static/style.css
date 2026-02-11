@@ -1,112 +1,43 @@
-* {
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-
 body {
-  margin: 0;
-  background: #0b1120;
-  color: #e5e7eb;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
 }
 
-.top {
-  text-align: center;
-  padding: 40px;
-  background: linear-gradient(135deg, #020617, #020617);
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.intro {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 40px;
+.tabs {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.intro-card {
-  background: #020617;
-  padding: 25px;
-  border-radius: 14px;
-  transition: transform 0.3s, box-shadow 0.3s;
+.tab-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
 }
 
-.intro-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 25px rgba(59,130,246,0.3);
+.tab-btn:hover {
+    background-color: #0056b3;
 }
 
-.pipeline {
-  text-align: center;
-  padding: 30px;
+.tab-content {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.stages {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.stage {
-  padding: 14px 22px;
-  border-radius: 30px;
-  background: #1e293b;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.stage:hover {
-  background: #2563eb;
-  transform: scale(1.05);
-}
-
-.actions {
-  text-align: center;
-  padding: 20px;
-}
-
-button {
-  padding: 14px 30px;
-  border-radius: 30px;
-  border: none;
-  background: #2563eb;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #1d4ed8;
-}
-
-/* Sliding panel */
-.side-panel {
-  position: fixed;
-  top: 0;
-  right: -400px;
-  width: 400px;
-  height: 100%;
-  background: #020617;
-  padding: 25px;
-  transition: right 0.4s ease;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-}
-
-.side-panel.open {
-  right: 0;
-}
-
-.close {
-  font-size: 28px;
-  cursor: pointer;
-  float: right;
-}
-
-.info-grid div {
-  margin: 10px 0;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #9ca3af;
+#metrics {
+    margin-top: 20px;
+    font-weight: bold;
 }

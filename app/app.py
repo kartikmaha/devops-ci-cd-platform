@@ -1,27 +1,24 @@
-from flask import Flask, jsonify, render_template
-import os
-from datetime import datetime
+from flask import Flask, render_template, jsonify
+import random
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def home():
     return render_template("index.html")
 
-@app.route("/info")
-def info():
-    return jsonify({
-        "status": "UP",
-        "environment": os.getenv("ENVIRONMENT", "dev"),
-        "version": os.getenv("APP_VERSION", "1.0.0"),
-        "build_number": os.getenv("BUILD_NUMBER", "local"),
-        "git_commit": os.getenv("GIT_COMMIT", "unknown"),
-        "deployed_at": datetime.utcnow().isoformat()
-    })
-    
-@app.route("/health")
-def health():
-    return jsonify({"status": "UP"}), 200
+@app.route('/metrics')
+def metrics():
+    # Simulated monitoring data
+    data = {
+        "ci_status": "Healthy",
+        "build_success_rate": f"{random.randint(90, 100)}%",
+        "active_pods": random.randint(2, 5),
+        "cpu_usage": f"{random.randint(30, 70)}%",
+        "memory_usage": f"{random.randint(40, 80)}%",
+        "security_vulnerabilities": random.randint(0, 3)
+    }
+    return jsonify(data)
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+if __name__ == '__main__':
+    app.run(debug=True)

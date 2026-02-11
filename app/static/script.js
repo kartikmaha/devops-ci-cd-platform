@@ -1,28 +1,23 @@
-function openTab(tabName) {
-    let tabs = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < tabs.length; i++) {
-        tabs[i].style.display = "none";
-    }
-    document.getElementById(tabName).style.display = "block";
+function showStage(message) {
+  alert(message);
 }
 
-// Load dashboard by default
-document.addEventListener("DOMContentLoaded", function () {
-    openTab('dashboard');
-    fetchMetrics();
-});
+function openPanel() {
+  document.getElementById("panel").classList.add("open");
+  loadData();
+}
 
-function fetchMetrics() {
-    fetch('/metrics')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("metrics").innerHTML = `
-                CI Status: ${data.ci_status} <br>
-                Build Success Rate: ${data.build_success_rate} <br>
-                Active Pods: ${data.active_pods} <br>
-                CPU Usage: ${data.cpu_usage} <br>
-                Memory Usage: ${data.memory_usage} <br>
-                Security Vulnerabilities: ${data.security_vulnerabilities}
-            `;
-        });
+function closePanel() {
+  document.getElementById("panel").classList.remove("open");
+}
+
+async function loadData() {
+  const info = await fetch("/info").then(r => r.json());
+  const health = await fetch("/health").then(r => r.json());
+
+  document.getElementById("status").innerText = health.status;
+  document.getElementById("environment").innerText = info.environment;
+  document.getElementById("version").innerText = info.version;
+  document.getElementById("build").innerText = info.build_number;
+  document.getElementById("commit").innerText = info.git_commit;
 }

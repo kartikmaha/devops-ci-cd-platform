@@ -1,47 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>DevOps CI/CD Platform Dashboard</title>
-    <link rel="stylesheet" href="/static/style.css">
+  <meta charset="UTF-8">
+  <title>CI/CD Interactive Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/script.js"></script>
 </head>
 <body>
 
-<h1>🚀 DevOps CI/CD Monitoring Dashboard</h1>
+<header class="top">
+  <h1>CI/CD Pipeline Dashboard</h1>
+  <p>Code → Build → Ship → Deploy</p>
+</header>
 
-<div class="tabs">
-    <button class="tab-btn" onclick="openTab('dashboard')">Dashboard</button>
-    <button class="tab-btn" onclick="openTab('ci')">CI Pipeline</button>
-    <button class="tab-btn" onclick="openTab('infra')">Infrastructure</button>
-    <button class="tab-btn" onclick="openTab('k8s')">Kubernetes</button>
-    <button class="tab-btn" onclick="openTab('security')">Security</button>
+<section class="intro">
+  <div class="intro-card">
+    <h2>Automated Delivery</h2>
+    <p>Every commit triggers a fully automated CI/CD pipeline.</p>
+  </div>
+  <div class="intro-card">
+    <h2>Cloud Native</h2>
+    <p>Dockerized application deployed on AWS using Ansible.</p>
+  </div>
+  <div class="intro-card">
+    <h2>Production Visibility</h2>
+    <p>Real-time environment and deployment insights.</p>
+  </div>
+  
+</section>
+
+<section class="pipeline">
+  <h2>Pipeline Stages</h2>
+  <div class="stages">
+    <div class="stage" onclick="showStage('Code pushed to GitHub')">Code</div>
+    <div class="stage" onclick="showStage('Jenkins builds the application')">Build</div>
+    <div class="stage" onclick="showStage('Docker image is created and pushed')">Docker</div>
+    <div class="stage" onclick="showStage('Ansible deploys to EC2')">Deploy</div>
+  </div>
+</section>
+
+<section class="actions">
+  <button onclick="openPanel()">View Live Deployment Status</button>
+</section>
+
+<!-- Sliding Panel -->
+<div id="panel" class="side-panel">
+  <span class="close" onclick="closePanel()">×</span>
+
+  <h2>Deployment Details</h2>
+
+  <div class="info-grid">
+    <div><strong>Status:</strong> <span id="status">-</span></div>
+    <div><strong>Environment:</strong> <span id="environment">-</span></div>
+    <div><strong>Version:</strong> <span id="version">-</span></div>
+    <div><strong>Build:</strong> <span id="build">-</span></div>
+    <div><strong>Commit:</strong> <span id="commit">-</span></div>
+  </div>
+
+  <h3>Tools Used</h3>
+  <ul>
+    <li>GitHub</li>
+    <li>Jenkins</li>
+    <li>Docker</li>
+    <li>Ansible</li>
+    <li>AWS EC2</li>
+  </ul>
 </div>
 
-<div id="dashboard" class="tab-content">
-    <h2>System Overview</h2>
-    <p>This dashboard provides a real-time view of the CI/CD pipeline, infrastructure health, and application runtime metrics.</p>
-    <div id="metrics"></div>
-</div>
+<footer>
+  <p>Internal DevOps Tool • CI/CD Visibility Platform</p>
+</footer>
 
-<div id="ci" class="tab-content">
-    <h2>CI Pipeline Monitoring</h2>
-    <p>This section tracks build success rates, pipeline execution status, and automated test validation to ensure safe deployments.</p>
-</div>
-
-<div id="infra" class="tab-content">
-    <h2>Infrastructure Monitoring</h2>
-    <p>Infrastructure health includes CPU, memory usage, and cloud resource status provisioned through Terraform.</p>
-</div>
-
-<div id="k8s" class="tab-content">
-    <h2>Kubernetes Runtime</h2>
-    <p>Displays active pods, container status, and cluster stability managed by Kubernetes orchestration.</p>
-</div>
-
-<div id="security" class="tab-content">
-    <h2>Security & Compliance</h2>
-    <p>Monitors container vulnerabilities, image scanning results, and compliance checks integrated into the CI pipeline.</p>
-</div>
-
-<script src="/static/script.js"></script>
 </body>
 </html>
